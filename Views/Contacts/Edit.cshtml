@@ -1,0 +1,108 @@
+﻿@model AddressBook.Models.Contact
+@inject AddressBook.Services.Interfaces.IImageService _imageService
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>
+    Contact     <img class="img-fluid contact-img" src="@_imageService.ConvertByteArrayToFile(Model.ImageData, Model.ImageType)" />
+</h4>
+@*<div class="col-4">
+    <img class="img-fluid" src="@_imageService.ConvertByteArrayToFile(Model.ImageData, Model.ImageType)" />
+</div>*@
+
+<hr />
+<div class="row">
+    <div class="col-md">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input type="tel" asp-for="Phone" class="form-control" pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address1" class="control-label"></label>
+                        <input asp-for="Address1" class="form-control" />
+                        <span asp-validation-for="Address1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zip" class="control-label"></label>
+                        <input asp-for="Zip" class="form-control" />
+                        <span asp-validation-for="Zip" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address2" class="control-label"></label>
+                        <input asp-for="Address2" class="form-control" />
+                        <span asp-validation-for="Address2" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageData" class="control-label"></label>
+                        <input type="file" asp-for="ImageFile" class="form-control" />
+                        <span asp-validation-for="ImageData" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="Created" class="control-label"></label>
+                    <input asp-for="Created" class="form-control" />
+                    <span asp-validation-for="Created" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="ImageData" class="control-label"></label>
+                    <input asp-for="ImageData" class="form-control" />
+                    <span asp-validation-for="ImageData" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="ImageType" class="control-label"></label>
+                    <input asp-for="ImageType" class="form-control" />
+                    <span asp-validation-for="ImageType" class="text-danger"></span>
+                </div>*@
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Created" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-sm btn-primary" />
+                <a class="btn btn-sm btn-secondary" asp-action="Index">Back to List</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
